@@ -1,33 +1,58 @@
+//===Functions===================================================================================
+
+function logIn(username, password, option){
+  cy.get('input[name="username"]').type(username, option)
+  cy.get('input[name="password"]').type(password, option)
+}
+
+function clickFormButton(content){
+  cy.get('button').contains(content).click()
+}
+
+function checkIfLogInCredentialsAreValid(){
+  cy.get('[role=alert]').as('Alert noticing about invalid credentials')
+  cy.get('@Alert noticing about invalid credentials').should('be.visible')
+}
+
+function checkIfLogInCredentialsWereFilled(){
+  cy.get('span').contains('Required').as('Alert about empty fields')
+  cy.get('@Alert about empty fields').should('be.visible')
+}
+
+function checkIfCorrectPageIsAccessed(targetUrl){
+  cy.url().should('eq',targetUrl).as('Does it access correct page?')
+}
+
+//===Tests===================================================================================
+
 describe('Testing HR Management Website', () => {
   it('Negative Log In test', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get('button').contains('Login').wait(500).click() // tests if it can be accessed without putting in valid credentials 
-    cy.get('input.oxd-input:first').wait(500).type('123123123')
-    cy.get('input.oxd-input[name="password"]').wait(500).type('123123123')
-    cy.get('button').contains('Login').wait(500).click()
-    cy.get('[role=alert]').should('be.visible') // Checks if an error appears upon entering invalid password
-    cy.get('input.oxd-input:first').wait(500).type('#%##@!!@#')
-    cy.get('input.oxd-input[name="password"]').wait(500).type('@#!#!@#^^##@@')
-    cy.get('button').contains('Login').wait(500).click()
-    cy.get('[role=alert]').should('be.visible') // Checks if an error appears upon entering invalid password
-    cy.get('input.oxd-input:first').wait(500).type('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
-    cy.get('input.oxd-input[name="password"]').wait(500).type('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
-    cy.get('button').contains('Login').wait(500).click()
-    cy.get('[role=alert]').should('be.visible') // Checks if an error appears upon entering invalid password
+    logIn("","")
+    clickFormButton('Login')
+    checkIfLogInCredentialsWereFilled()
+    logIn('123123123','123123123')
+    clickFormButton('Login')
+    checkIfLogInCredentialsAreValid()
+    logIn('#%##@!!@#','@#!#!@#^^##@@')
+    clickFormButton('Login')
+    checkIfLogInCredentialsAreValid()
+    logIn('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA','AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+    clickFormButton('Login')
+    checkIfLogInCredentialsAreValid()
   })
+
   it('Positive Log In test', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.title().should('eq','OrangeHRM') // Checks if title is displayed as intended
-    cy.get('input.oxd-input:first').wait(500).type('Admin')
-    cy.get('input.oxd-input[name="password"]').wait(500).type('admin123')
-    cy.get('button').contains('Login').wait(500).click()
+    logIn('Admin','admin123')
+    clickFormButton('Login')
+    checkIfCorrectPageIsAccessed('https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index')
   })
   
   it('Testing search bar', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get('input.oxd-input:first').wait(500).type('Admin')
-    cy.get('input.oxd-input[name="password"]').wait(500).type('admin123')
-    cy.get('button').contains('Login').wait(500).click()
+    logIn("Admin", "admin123")
+    clickFormButton('Login')
     cy.get('input[placeholder="Search"]').type('Admin').wait(1000).clear()
     cy.get('input[placeholder="Search"]').type('PIM').wait(1000).clear()
     cy.get('input[placeholder="Search"]').type('Leave').wait(1000).clear()
@@ -47,9 +72,8 @@ describe('Testing HR Management Website', () => {
 
   it('Testing Navigation Bar', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get('input.oxd-input:first').wait(500).type('Admin')
-    cy.get('input.oxd-input[name="password"]').wait(500).type('admin123')
-    cy.get('button').contains('Login').wait(500).click()
+    logIn("Admin", "admin123")
+    clickFormButton('Login')
     cy.get('a').contains('Admin').click()
     cy.get('a').contains('PIM').click()
     cy.get('a').contains('Leave').click()
@@ -59,32 +83,26 @@ describe('Testing HR Management Website', () => {
     cy.get('a').contains('Performance').click()
     cy.get('a').contains('Dashboard').click()
     cy.get('a').contains('Directory').click()
-    cy.get('a').contains('Maintenance').click()
-    cy.get('input[name="username"]').clear({force: true}).wait(500).type('Admin', {force: true}) // Enters the username
-    cy.get('input[name="password"]').wait(500).type('admin123', {force: true}) // Enters the password
-    cy.get('button').contains('Confirm').wait(500).click() // Accesses the page to make navigation tab available again 
+    cy.get('a').contains('Maintenance').click() // Maintenance page requires administrator credentials to access. Navigation bar is hidden unless valid credentials are used or User leaves the page
+    logIn('Admin','admin123', {force:true})
+    clickFormButton('Confirm')
     cy.get('a').contains('Claim').click()
-    cy.get('a').contains('Buzz').click()
   })
 
   it('Testing Maintenance Page', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get('input.oxd-input:first').wait(500).type('Admin')
-    cy.get('input.oxd-input[name="password"]').wait(500).type('admin123')
-    cy.get('button').contains('Login').wait(500).click()
-
+    logIn("Admin", "admin123")
+    clickFormButton('Login')
     cy.get('a').contains('Maintenance').click() // Accesses subject of the test case
-    cy.get('input[name="username"]').clear({force: true})
-    cy.get('button').contains('Confirm').wait(500).click() // Tests if it can be accessed without putting in valid credentials
-    cy.get('span').contains('Required').should('be.visible') // Checks if an error appears under required fields
-    cy.get('input[name="password"]').wait(500).type('123123123', {force: true}) 
-    cy.get('button').contains('Confirm').wait(500).click() // Tests if any password will work
-    cy.get('[role=alert]').should('be.visible') // Checks if an error appears upon entering invalid password
-    cy.get('input[name="username"]').clear({force: true}).wait(500).type('Admin', {force: true})
-    cy.get('input[name="password"]').wait(500).type('admin123', {force: true})
-    cy.get('button').contains('Confirm').wait(500).click()
-    cy.url().should('eq','https://opensource-demo.orangehrmlive.com/web/index.php/maintenance/purgeEmployee')
-
+    cy.get('input[name="username"]').clear({force: true}) //
+    clickFormButton('Confirm')
+    checkIfLogInCredentialsWereFilled()
+    logIn('Admin','123123123',{force:true})
+    clickFormButton('Confirm')
+    checkIfLogInCredentialsAreValid()
+    logIn('Admin','admin123',{force:true})
+    clickFormButton('Confirm')
+    checkIfCorrectPageIsAccessed('https://opensource-demo.orangehrmlive.com/web/index.php/maintenance/purgeEmployee')
   })
 
 })
