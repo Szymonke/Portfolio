@@ -21,6 +21,8 @@ function checkIfCorrectPageIsAccessed(targetUrl){
   cy.url().should('eq',targetUrl).as('Does it access correct page?')
 }
 
+const navBarTerms = ['Admin', 'PIM', 'Leave', 'Time', 'Recruitment', 'My Info', 'Performance', 'Dashboard', 'Directory', 'Maintenance', 'Claim']
+
 //===Tests===================================================================================
 
 describe('Testing HR Management Website', () => {
@@ -51,8 +53,7 @@ describe('Testing HR Management Website', () => {
     logIn("Admin", "admin123")
     clickFormButton('Login')
 
-    const searchTerms = ['Admin', 'PIM', 'Leave', 'Time', 'Recruitment', 'My Info', 'Performance', 'Dashboard', 'Directory', 'Maintenance', 'Claim', 'Buzz', 'Test', '123123', '!@#$%^&']
-    searchTerms.forEach(term => {
+    navBarTerms.forEach(term => {
       cy.get('input[placeholder="Search"]').type(term).clear()
     })
   })
@@ -61,6 +62,13 @@ describe('Testing HR Management Website', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
     logIn("Admin", "admin123")
     clickFormButton('Login')
+    navBarTerms.forEach(term => {
+      cy.get('a').contains(term).click()
+      if(term === 'Maintenance'){
+        logIn('Admin','admin123', {force:true})
+        clickFormButton('Confirm')
+      }
+    })
     cy.get('a').contains('Admin').click()
     cy.get('a').contains('PIM').click()
     cy.get('a').contains('Leave').click()
