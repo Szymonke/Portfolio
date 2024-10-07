@@ -1,6 +1,6 @@
 import { any } from "cypress/types/bluebird"
 
-describe('template spec', () => {
+describe('Introduces absolute basics of typescript and cypress', () => {
   it('passes', () => {
     cy.log('hello world')
   })
