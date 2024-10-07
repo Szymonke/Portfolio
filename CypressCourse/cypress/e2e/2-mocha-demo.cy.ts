@@ -1,4 +1,4 @@
-describe('whatever', () => {
+describe('Mocha introduction', () => {
     before(()=>{
         cy.log('before hook')
     })
