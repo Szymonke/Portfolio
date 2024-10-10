@@ -11,7 +11,6 @@ describe('Retry ability demo', () => {
         cy.get('#ajaxButton').click()
         cy.get('.bg-success').should('contain.text','Data calculated on the client side.')
     })
-    //v not efficient because I have to adjust the defaultCommandTimeout
     it('Tests a progress bar//My approach', () => {
         cy.visit('/progressbar')
         cy.get('#startButton').click()
@@ -19,7 +18,7 @@ describe('Retry ability demo', () => {
             cy.get('#stopButton').click()
         })
     });
-    it.only('Tests a progress bar//Course approach', () => {
+    it('Tests a progress bar//Course approach', () => {
         cy.visit('/progressbar')
         cy.get('#startButton').click()
         cy.get('#progressBar', {timeout: 30000}).should('contain', '75%')
