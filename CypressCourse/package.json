@@ -4,7 +4,7 @@
   "description": "This is a project where I test a demo version of HR Management website from OrangeHRM.",
   "main": "index.js",
   "scripts": {
-    "runner": "cypress open --e2e --browser chrome --config baseUrl=https://www.uitestingplayground.com/"
+    "runner": "cypress open --e2e --browser chrome --config baseUrl=http://uitestingplayground.com --env demoVar=Hello_From_Package_File"
   },
   "keywords": [
     "cypress",
