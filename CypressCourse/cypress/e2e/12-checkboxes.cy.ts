@@ -7,7 +7,7 @@ describe('Demo QA', () => {
         cy.get('#result > :nth-child(1)').should('have.text','You have selected :')
     });
 });
-describe.only('', () => {
+describe('', () => {
     beforeEach(() => {
         cy.visit(`${Cypress.env('theInternet')}/checkboxes`)
     });

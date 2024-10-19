@@ -14,7 +14,7 @@ describe('Links which open a new tab', () => {
     });
 });
 
-describe.only('Intercepting API requests', () => {
+describe('Intercepting API requests', () => {
     beforeEach(() => {
         cy.visit(`${Cypress.env('demoQA')}/links`)
         cy.intercept('GET', `${Cypress.env('demoQA')}/created`).as('createdStatus')
