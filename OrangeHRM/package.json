@@ -1,0 +1,23 @@
+{
+  "name": "orangehrm",
+  "version": "1.0.0",
+  "description": "This is a project where I test a demo version of HR Management website.",
+  "main": "index.js",
+  "scripts": {
+    "runner": "cypress open --e2e --browser chrome"
+  },
+  "keywords": [
+    "cypress",
+    "typescript",
+    "testing",
+    "HRManagement"
+  ],
+  "author": "Szymon Dąbrowski",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mocha": "^10.0.9",
+    "cypress": "^13.15.1",
+    "typescript": "^5.6.3",
+    "xpath": "^0.0.34"
+  }
+}

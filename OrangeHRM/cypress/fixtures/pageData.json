@@ -1,0 +1,15 @@
+{
+  "pages": [
+    {"name": "Admin", "url": "https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers"},
+    {"name": "PIM", "url": "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList"},
+    {"name": "Leave", "url": "https://opensource-demo.orangehrmlive.com/web/index.php/leave/viewLeaveList"},
+    {"name": "Time", "url": "https://opensource-demo.orangehrmlive.com/web/index.php/leave/viewLeaveList"},
+    {"name": "Recruitment", "url": "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/viewCandidates"},
+    {"name": "My Info", "url": "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails/empNumber/"},
+    {"name": "Performance", "url": "https://opensource-demo.orangehrmlive.com/web/index.php/performance/searchEvaluatePerformanceReview"},
+    {"name": "Dashboard", "url": "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index"},
+    {"name": "Directory", "url": "https://opensource-demo.orangehrmlive.com/web/index.php/directory/viewDirectory"},
+    {"name": "Maintenance", "url": "https://opensource-demo.orangehrmlive.com/web/index.php/maintenance/purgeEmployee"},
+    {"name": "Claim", "url": "https://opensource-demo.orangehrmlive.com/web/index.php/claim/viewAssignClaim"}
+  ]
+}
