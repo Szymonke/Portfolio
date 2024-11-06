@@ -15,13 +15,13 @@ class Dashboard {
         { page: 'Maintenance', url: 'https://opensource-demo.orangehrmlive.com/web/index.php/maintenance/purgeEmployee', selector: `//span[text()='Maintenance']`},
         { page: 'Claim', url: 'https://opensource-demo.orangehrmlive.com/web/index.php/claim/viewAssignClaim', selector: `//span[text()='Claim']`}]
       
-    checkNavigationBarContents = () => {
+    checkNavigationBarContents = ():void => {
         this.navBarItems.forEach(item =>{
             cy.xpath(item.selector).should('contain',item.page)
         })
     }
 
-    checkNavigationBarFunctionality = () => {
+    checkNavigationBarFunctionality = ():void => {
         this.navBarItems.forEach(item => {
             cy.xpath(item.selector).click()
             cy.url().should('eql', item.url)
@@ -31,15 +31,18 @@ class Dashboard {
         })
     }
 
-    checkSearchBarFunctionality = () => {
+    checkSearchBarFunctionality = ():void => {
         this.navBarItems.forEach(item => {
             cy.get(this.searchInput).type(item.page)
             cy.xpath(item.selector).should('be.visible')
             cy.get(this.searchInput).clear()
         })
     }
-    checkURL = () =>{
+    checkURL = ():void =>{
         cy.url().should('eql', this.dashboardPage)
+    }
+    accessPage = (pageName:string):void => {
+        cy.xpath(`//span[text()="${pageName}"]`).click()
     }
 }
 

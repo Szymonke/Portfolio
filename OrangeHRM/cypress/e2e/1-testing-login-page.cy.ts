@@ -6,13 +6,13 @@ describe('Tests if log in page works as intended', () => {
     Loginpage.visit()
   });
 
-  it('Successfully logs in', () => {
+  it('Tests valid login credentials', () => {
     Loginpage.submitLogin('Admin','admin123')
     DashboardPage.checkURL()
 
   });
 
-  it('Fails to log in', () => {
+  it('Tests invalid login credentials', () => {
     Loginpage.submitLogin('','')
     Loginpage.checkIfCredentialsAreFilled()
     Loginpage.checkURL()
