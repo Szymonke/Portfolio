@@ -3,12 +3,11 @@ import { Loginpage } from "../pages/Login";
 
 describe('Tests if front page works as intended', () => {
     beforeEach(() => {
-        Loginpage.visit()
-        Loginpage.submitLogin('Admin','admin123')
-        DashboardPage.checkURL()
+        Loginpage.loginAsAdmin()
     });
     
     it('Tests if search bar works as intended', () => {
+        DashboardPage.checkUrl()
         DashboardPage.checkNavigationBarContents()
         DashboardPage.checkSearchBarFunctionality()
     });

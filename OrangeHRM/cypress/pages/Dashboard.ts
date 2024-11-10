@@ -38,7 +38,7 @@ class Dashboard {
             cy.get(this.searchInput).clear()
         })
     }
-    checkURL = ():void =>{
+    checkUrl = ():void =>{
         cy.url().should('eql', this.dashboardPage)
     }
     accessPage = (pageName:string):void => {

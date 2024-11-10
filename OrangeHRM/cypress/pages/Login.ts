@@ -15,6 +15,11 @@ class Login{
         cy.get(this.loginButton).click()
     }
 
+    loginAsAdmin = ():void => {
+        this.visit()
+        this.submitLogin('Admin', 'admin123')
+    }
+
     checkIfCredentialsAreFilled = ():void => {
         cy.get(this.missingCredentialsMessage).should('be.visible')
     }

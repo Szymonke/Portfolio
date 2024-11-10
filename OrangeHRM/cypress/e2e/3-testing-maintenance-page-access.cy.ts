@@ -1,26 +1,25 @@
 import { DashboardPage } from "../pages/Dashboard";
 import { Loginpage } from "../pages/Login";
-import { MaintenanceLoginPage } from "../pages/MaintenanceLogin";
+import { MaintenancePage } from "../pages/Maintenance";
 
 describe('Tests functionality of the Maintenance login page', () => {
     beforeEach(() => {
-        Loginpage.visit()
-        Loginpage.submitLogin('Admin','admin123')
+        Loginpage.loginAsAdmin()
         DashboardPage.accessPage("Maintenance")
     });
 
     it('Tests valid login credentials', () => {
-        MaintenanceLoginPage.checkIfUsernameFieldIsDisabled()
-        MaintenanceLoginPage.submitLogin('admin123')
+        MaintenancePage.checkIfUsernameFieldIsDisabled()
+        MaintenancePage.submitLogin('admin123')
     });
 
     it('Tests invalid login credentials', () => {
-        MaintenanceLoginPage.submitLogin('wrongPassword')
-        MaintenanceLoginPage.checkIfPasswordIsValid()
+        MaintenancePage.submitLogin('wrongPassword')
+        MaintenancePage.checkIfPasswordIsValid()
     });
 
     it('Tests missing login credentials', () => {
-        MaintenanceLoginPage.submitLogin('')
-        MaintenanceLoginPage.checkIfPasswordIsFilled()
+        MaintenancePage.submitLogin('')
+        MaintenancePage.checkIfPasswordIsFilled()
     });
 });

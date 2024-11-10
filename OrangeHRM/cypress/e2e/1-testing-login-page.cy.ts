@@ -8,7 +8,7 @@ describe('Tests if log in page works as intended', () => {
 
   it('Tests valid login credentials', () => {
     Loginpage.submitLogin('Admin','admin123')
-    DashboardPage.checkURL()
+    DashboardPage.checkUrl()
 
   });
 
