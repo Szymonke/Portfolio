@@ -3,7 +3,7 @@ const addRemoveElementsPage = {
     deleteElementButton: 'button[onclick="deleteElement()"]' as string,
     amountOfDeleteButtons: 0 as number,
 
-    clickButtonXTimes(x:number):void {
+    clickButtonXTimes(x: number): void {
         for(let y: number = 0; x>y; y++) {
             cy.get(this.addElementButton).click()
             this.amountOfDeleteButtons++
@@ -15,10 +15,10 @@ const addRemoveElementsPage = {
         }
     },
 
-    deleteXElements(x:number):void{
-        let deletions = Math.min(x, this.amountOfDeleteButtons);
+    deleteXElements(x: number): void{
+        let deletions: number = Math.min(x, this.amountOfDeleteButtons);
         
-        for(let y = 0; y<deletions; y++){
+        for(let y: number = 0; y<deletions; y++){
             cy.get(this.deleteElementButton).first().click()
             this.amountOfDeleteButtons--
         }

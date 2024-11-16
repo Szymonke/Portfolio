@@ -1,5 +1,6 @@
 const homePage = {
     addRemoveElementsNavButton: '//a[(text()="Add/Remove Elements")]' as string,
+    autocompleteNavButton: '//a[(text()="Autocomplete")]' as string,
     visit():void {
         cy.visit('https://practice.cydeo.com/')
     },
