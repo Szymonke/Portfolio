@@ -4,9 +4,9 @@ import homePage from "../pages/Home"
 describe('Tests adding and removing elements in real time', () => {
   beforeEach(() => {
     homePage.visit()
+    homePage.accessPage(homePage.addRemoveElementsNavButton)
   });
   it('Tests adding an element', () => {
-    homePage.accessPage(homePage.addRemoveElementsNavButton)
     addRemoveElementsPage.clickButtonXTimes(0)
     addRemoveElementsPage.deleteXElements(0)
     addRemoveElementsPage.clickButtonXTimes(3)

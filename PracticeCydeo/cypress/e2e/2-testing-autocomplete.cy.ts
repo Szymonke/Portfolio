@@ -4,10 +4,10 @@ import homePage from "../pages/Home";
 describe('', () => {
     beforeEach(() => {
         homePage.visit()
+        homePage.accessPage(homePage.autocompleteNavButton)
     });
     it('', () => {
-        homePage.accessPage(homePage.autocompleteNavButton)
         AutocompletePage.submitCountry('Poland')
-        AutocompletePage.checkAutoComplete('P')
+        AutocompletePage.checkAutoComplete('A')
     });
 });
