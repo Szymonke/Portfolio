@@ -2,6 +2,10 @@ const CheckboxesPage = {
     checkboxNumberOne: 'input#box1' as string,
     checkboxNumberTwo: 'input#box2' as string,
 
+    visit():void{
+        cy.visit('https://practice.cydeo.com/checkboxes')
+    },
+
     checkDefaultCheckboxStatus(): void {
         cy.get(this.checkboxNumberOne).should('not.have.attr', 'checked').as('Box 1 is unchecked by default')
         cy.get(this.checkboxNumberTwo).should('have.attr', 'checked').as('Box 2 is checked by default')

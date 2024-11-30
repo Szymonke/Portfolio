@@ -6,6 +6,10 @@ const AutocompletePage = {
     resultText: 'p#result' as string,
     autoCompleteList: 'div#myCountryautocomplete-list' as string,
 
+    visit(): void{
+        cy.visit('https://practice.cydeo.com/autocomplete')
+    },
+
     submitCountry(country: string): void {
         cy.get(this.inputCountryField).type(country).then(() =>{
             cy.get(this.submitButton).click()

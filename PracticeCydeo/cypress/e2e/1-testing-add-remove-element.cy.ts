@@ -1,10 +1,8 @@
 import addRemoveElementsPage from "../pages/AddRemoveElements";
-import homePage from "../pages/Home"
 
 describe('Tests adding and removing elements in real time', () => {
   beforeEach(() => {
-    homePage.visit()
-    homePage.accessPage(homePage.addRemoveElementsNavButton)
+    addRemoveElementsPage.visit()
   });
   it('Tests adding an element', () => {
     addRemoveElementsPage.clickButtonXTimes(0)

@@ -3,6 +3,10 @@ const addRemoveElementsPage = {
     deleteElementButton: 'button[onclick="deleteElement()"]' as string,
     amountOfDeleteButtons: 0 as number,
 
+    visit(): void{
+        cy.visit('https://practice.cydeo.com/add_remove_elements/')
+    },
+
     clickButtonXTimes(x: number): void {
         for(let y: number = 0; x>y; y++) {
             cy.get(this.addElementButton).click()

@@ -1,10 +1,8 @@
 import AutocompletePage from "../pages/Autocomplete";
-import homePage from "../pages/Home";
 
 describe('', () => {
     beforeEach(() => {
-        homePage.visit()
-        homePage.accessPage(homePage.autocompleteNavButton)
+        AutocompletePage.visit()
     });
     it('', () => {
         AutocompletePage.submitCountry('Poland')
