@@ -1,0 +1,53 @@
+.container {
+    margin-left: 50%;
+    margin-top: 5%;
+    padding: 1%;
+    background-color: #A4B465;
+    user-select: none;
+    
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px black;
+}
+
+.header {
+    font-size: 250%;
+    text-align: center;
+}
+
+.itemList {
+    background-color: #F5ECD5;
+    padding: 1%;
+    border-radius: 25px;
+}
+
+.newItemContent {
+    width: 20%;
+    padding: 1%;
+    margin-left: 40%;
+    margin-bottom: 1%;
+    background-color: #DCD4BF;
+    border-radius: 25px;
+    border-style: none;
+    text-align: center;
+}
+
+.list {
+    background-color: #A4B465;
+    border-radius: 25px;
+    padding: 1%;
+    list-style: none;
+    user-select: text;
+    font-size: 200%;
+}
+
+.addButton {
+    background-color: #626F47;
+    color: #F5ECD5;
+    
+    border-radius: 25px;
+    padding: 0.5%;
+    width: fit-content;
+    user-select: none;
+    display: inline;
+    position: absolute;
+}
