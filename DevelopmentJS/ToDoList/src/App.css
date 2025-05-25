@@ -1,5 +1,6 @@
 .container {
-    margin-left: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
     margin-top: 5%;
     padding: 1%;
     background-color: #A4B465;
@@ -21,7 +22,6 @@
 }
 
 .newItemContent {
-    width: 20%;
     padding: 1%;
     margin-left: 40%;
     margin-bottom: 1%;
@@ -49,5 +49,19 @@
     width: fit-content;
     user-select: none;
     display: inline;
-    position: absolute;
+}
+
+.doneButton {
+    width:10%;
+    float: left;
+}
+
+.item{
+    width:80%;
+    float: left;
+}
+
+.deleteButton {
+    width:10%;
+    float: left;
 }
