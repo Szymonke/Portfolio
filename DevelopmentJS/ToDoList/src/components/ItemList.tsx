@@ -1,30 +1,35 @@
-import { useState } from "react";
+import { useState, type Key } from "react";
 
 const ItemList = () => {
-    const [items, setItems] = useState<string[]>([])
+    const [items, setItems] = useState<{id: Key, info: string}[]>([])
 
     const addItem = () => {
         const inputElement = document.querySelector<HTMLInputElement>(".newItemContent");
         const inputValue = inputElement ? inputElement.value : "";
         if(inputValue) {
-            setItems([...items, inputValue])
+            const newItem = {
+                "id": items.length,
+                "info": inputValue
+            }
+            setItems([...items, newItem])
         }else{
             console.log("Empty!")
         }
-        }
+    }
+    
+    const deleteItem = () => {
+        console.log("Deleted!")
+    }
     return (
         <div className="itemList">
             <input type="text" placeholder="What's the task for today?" className="newItemContent"></input>
             <div className="addButton" onClick={addItem}>Add item</div>
             <ul className="list">          
                 {items.map(item => (
-                    <>
-                        <li>
-                            <div className="doneButton">Done</div>
-                            <p className="item">{item}</p>
-                            <div className="deleteButton">Delete</div>
-                        </li>
-                    </>
+                    <li className="item" key={item.id}>
+                          <p className="itemContent">{item.info}</p>
+                         <div className="deleteButton" onClick={deleteItem}>Done</div>
+                     </li>
                 ))}
             </ul>
         </div>

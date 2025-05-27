@@ -51,17 +51,22 @@
     display: inline;
 }
 
-.doneButton {
-    width:10%;
-    float: left;
+.item{
+    display: flex;
 }
 
-.item{
-    width:80%;
-    float: left;
+.itemContent{
+    order: 1;
+    width: 100%;
 }
 
 .deleteButton {
-    width:10%;
-    float: left;
+    order: 2;
+    align-self: center;
+    padding: 0.5%;
+    width: fit-content;
+    background-color: #F5ECD5;
+    border-radius: 15px;
+    user-select: none;
+
 }
