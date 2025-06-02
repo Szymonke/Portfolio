@@ -43,7 +43,7 @@
     list-style: none;
     user-select: text;
     font-size: 150%;
-    
+    margin-top: 0.5%;
 }
 
 .addButton {
@@ -75,6 +75,10 @@
     width: 100%;
 }
 
+.undisplayed {
+    display: none;
+}
+
 .deleteButton {
     max-height: 4%;
     max-width: 4%;
@@ -85,4 +89,16 @@
     background-color: #F5ECD5;
     border-radius: 15px;
     user-select: none;
+}
+
+.changeFilters {
+    font-size: 75%;
+    background-color: #626F47;
+    color: #F5ECD5;
+    margin-left: 82.5%;
+    border-radius: 25px;
+    border-style: none;
+    text-align: center;
+    width: 15%;
+    padding: 1%;
 }

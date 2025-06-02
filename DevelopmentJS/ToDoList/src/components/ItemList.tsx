@@ -1,9 +1,10 @@
 import { useState, type Key } from "react";
 
 const ItemList = () => {
-    const [items, setItems] = useState<{id: Key, info: string, theme: string, status: boolean}[]>([])
+    const [items, setItems] = useState<{id: Key, info: string, theme: string, status: boolean, display: string}[]>([])
     const [newItem, setNewItem] = useState<string>()
     const [listTheme, setListTheme] = useState<string>("emptyList")
+    const [showItems, setShowItems] = useState<{id: number, show: string}>({"id": 0, "show": "Show all tasks"})
 
     const getNewItem = (e: React.ChangeEvent<HTMLInputElement>) => {
         const targetValue = e.target.value;
@@ -20,7 +21,8 @@ const ItemList = () => {
                 "id": items.length,
                 "info": newItem,
                 "theme": "incomplete",
-                "status": false
+                "status": false,
+                "display": ""
             }])
             if(items){setListTheme("list")}
         }else{
@@ -56,13 +58,41 @@ const ItemList = () => {
         }
     }
 
+    const changeFilters = () => {
+        const id = showItems.id
+        if(id === 0){
+            setShowItems({"id": 1, "show": "Show unfinished tasks"})
+            items.filter(item => {
+                if(item.status === true) {
+                    item.display =  "undisplayed"
+                } else{
+                    item.display = ""
+                }
+            })
+        }else if(id === 1){
+            setShowItems({"id": 2, "show": "Show finished tasks"})
+            items.filter(item => {
+                if(item.status === false) {
+                    item.display =  "undisplayed"
+                } else{
+                    item.display = ""
+                }
+            })
+        }else{
+            setShowItems({"id": 0, "show": "Show all tasks"})
+            items.forEach(item => {
+                item.display = ""
+            })
+        }
+    }
     return (
         <div className="itemList">
             <input type="text" placeholder="What's the task for today?" className="newItemContent" onChange={getNewItem}></input>
             <div className="addButton" onClick={addItem}>Add item</div>
+            <div className="changeFilters" onClick={changeFilters}>{showItems.show}</div>
             <ul className={listTheme}>          
                 {items.map(item => (
-                    <li className="item" key={item.id} data-key={item.id}>
+                    <li className={item.display+" item"} key={item.id} data-key={item.id}>
                         <p className={item.theme} onClick={() => {
                             markAsDone(item.id)
                         }}>{item.info}</p>
